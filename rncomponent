@@ -1,0 +1,40 @@
+#!/usr/bin/perl -w
+
+my $file;
+
+if (@ARGV != 1) {
+    # no enough argument
+    exit 0 if print "Usage: rncomponent [filename] [classname]\n"
+} else {
+    # get the file name
+    $file = $ARGV[0];
+} 
+
+if (-e "$file.js") {
+    # check if file already exists
+    exit 0 if print "$file.js already exists\n";
+} else {
+    # write into the file
+    open my $F, ">", "$file.js" or die "I/O error";
+    print $F "import React, { Component } from 'react';" . "\n" .
+             "import { View, Text, StyleSheet } from 'react-native';" . "\n\n" .
+             "class $file extends Component {" . "\n" .
+             "  render() {" . "\n" .
+             "    const { container } = styles;" . "\n" .
+             "    return (" . "\n" .
+             "      <View style={container}>" . "\n" .
+             "        <Text>$file created</Text>" . "\n" .
+             "      </View>" . "\n" .
+             "    )" . "\n" .
+             "  }" . "\n" .
+             "}" . "\n\n" .
+             "const styles = StyleSheet.create({" . "\n" .
+             "  container: {" . "\n" .
+             "    flex: 1," . "\n" .
+             "    alignItems: 'center'," . "\n" .
+             "    justifyContent: 'center'" . "\n" .
+             "  }" . "\n" .
+             "})" . "\n\n" .
+             "export { $file };" . "\n";
+    close $F;
+}
