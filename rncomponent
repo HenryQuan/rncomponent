@@ -4,7 +4,7 @@ my $file;
 
 if (@ARGV != 1) {
     # no enough argument
-    exit 0 if print "Usage: rncomponent [filename] [classname]\n"
+    exit 0 if print "Usage: rncomponent [filename]\n"
 } else {
     # get the file name
     $file = $ARGV[0];
@@ -23,7 +23,7 @@ if (-e "$file.js") {
              "    const { container } = styles;" . "\n" .
              "    return (" . "\n" .
              "      <View style={container}>" . "\n" .
-             "        <Text>$file created</Text>" . "\n" .
+             "        <Text>$file</Text>" . "\n" .
              "      </View>" . "\n" .
              "    )" . "\n" .
              "  }" . "\n" .
