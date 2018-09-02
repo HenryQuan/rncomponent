@@ -3,6 +3,7 @@ This script will create a template for your new components.
 
 I am learning Perl and Shell recently (COMP2041) and wonder if I could write something for practise. 
 ### How to install
+Clone this repo,
 ```
 ./install.sh
 ```
