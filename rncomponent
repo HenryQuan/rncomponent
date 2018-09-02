@@ -4,15 +4,18 @@ my $file;
 
 if (@ARGV != 1) {
     # no enough argument
-    exit 0 if print "Usage: rncomponent [filename]\n"
+    exit 1 if print "Usage: rncomponent [filename]\n"
 } else {
     # get the file name
-    $file = $ARGV[0];
+    $file = ucfirst $ARGV[0];
+    if (lc $file eq "--about") {
+        exit 0 if print "\nrncomponent------\ncreates a template for your new components\nRead more: https://github.com/HenryQuan/rncomponent/\n\n";
+    }
 } 
 
 if (-e "$file.js") {
     # check if file already exists
-    exit 0 if print "$file.js already exists\n";
+    exit 1 if print "$file.js already exists\n";
 } else {
     # write into the file
     open my $F, ">", "$file.js" or die "I/O error";
@@ -26,7 +29,7 @@ if (-e "$file.js") {
              "        <Text>$file</Text>" . "\n" .
              "      </View>" . "\n" .
              "    )" . "\n" .
-             "  }" . "\n" .
+             "  };" . "\n" .
              "}" . "\n\n" .
              "const styles = StyleSheet.create({" . "\n" .
              "  container: {" . "\n" .
@@ -34,7 +37,7 @@ if (-e "$file.js") {
              "    alignItems: 'center'," . "\n" .
              "    justifyContent: 'center'" . "\n" .
              "  }" . "\n" .
-             "})" . "\n\n" .
+             "});" . "\n\n" .
              "export { $file };" . "\n";
     close $F;
 }

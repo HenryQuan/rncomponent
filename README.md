@@ -19,7 +19,7 @@ and run it again.
 rncomponent [filename]
 ```
 This script will create a template for your new component class so that you dont have to type the same thing over and over again. It gives you a basic view with stylesheet and **it won't override existing files.**
-### Example output
+### Sample output
 ```
 rncomponent HelloWorld
 ```
