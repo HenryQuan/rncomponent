@@ -1,43 +1,36 @@
 #!/usr/bin/perl -w
 
 my $file;
+# no enough argument
+die "Usage: rncomponent [filename]\n" if (@ARGV != 1);
+# get the file name
+$file = ucfirst $ARGV[0];
+die "\nrncomponent------\ncreates a template for your new components\nRead more: https://github.com/HenryQuan/rncomponent/\n\n" if (lc $file eq "--about");
 
-if (@ARGV != 1) {
-    # no enough argument
-    die "Usage: rncomponent [filename]\n";
-} else {
-    # get the file name
-    $file = ucfirst $ARGV[0];
-    if (lc $file eq "--about") {
-        die "\nrncomponent------\ncreates a template for your new components\nRead more: https://github.com/HenryQuan/rncomponent/\n\n";
-    }
-} 
+# check if file already exists
+die "$file.js already exists\n" if (-e "$file.js");
 
-if (-e "$file.js") {
-    # check if file already exists
-    die "$file.js already exists\n";
-} else {
-    # write into the file
-    open my $F, ">", "$file.js" or die "I/O error" or die;
-    print $F "import React, { Component } from 'react';" . "\n" .
-             "import { View, Text, StyleSheet } from 'react-native';" . "\n\n" .
-             "class $file extends Component {" . "\n" .
-             "  render() {" . "\n" .
-             "    const { container } = styles;" . "\n" .
-             "    return (" . "\n" .
-             "      <View style={container}>" . "\n" .
-             "        <Text>$file</Text>" . "\n" .
-             "      </View>" . "\n" .
-             "    )" . "\n" .
-             "  };" . "\n" .
-             "}" . "\n\n" .
-             "const styles = StyleSheet.create({" . "\n" .
-             "  container: {" . "\n" .
-             "    flex: 1," . "\n" .
-             "    alignItems: 'center'," . "\n" .
-             "    justifyContent: 'center'" . "\n" .
-             "  }" . "\n" .
-             "});" . "\n\n" .
-             "export { $file };" . "\n";
-    close $F;
-}
+# write into the file
+open  my $F, ">", "$file.js" or die "I/O error";
+print $F "import React, { Component } from 'react';" . "\n" .
+    "import { View, Text, StyleSheet } from 'react-native';" . "\n\n" .
+    "class $file extends Component {" . "\n" .
+    "  render() {" . "\n" .
+    "    const { container } = styles;" . "\n" .
+    "    return (" . "\n" .
+    "      <View style={container}>" . "\n" .
+    "        <Text>$file</Text>" . "\n" .
+    "      </View>" . "\n" .
+    "    )" . "\n" .
+    "  };" . "\n" .
+    "}" . "\n\n" .
+    "const styles = StyleSheet.create({" . "\n" .
+    "  container: {" . "\n" .
+    "    flex: 1," . "\n" .
+    "    alignItems: 'center'," . "\n" .
+    "    justifyContent: 'center'" . "\n" .
+    "  }" . "\n" .
+    "});" . "\n\n" .
+    "export { $file };" . "\n";
+close $F;
+print "$file.js has been created\n"
