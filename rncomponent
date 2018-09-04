@@ -1,10 +1,14 @@
 #!/usr/bin/perl -w
 
 my $file;
+
 # no enough argument
 die "Usage: rncomponent [filename]\n" if (@ARGV != 1);
 # get the file name
 $file = ucfirst $ARGV[0];
+
+# check if name is good (numbers and letters only)
+die "$file is not legit\n" if ($file =~ /[^\d\w]/);
 die "\nrncomponent------\ncreates a template for your new components\nRead more: https://github.com/HenryQuan/rncomponent/\n\n" if (lc $file eq "--about");
 
 # check if file already exists
@@ -31,6 +35,6 @@ print $F "import React, { Component } from 'react';" . "\n" .
     "    justifyContent: 'center'" . "\n" .
     "  }" . "\n" .
     "});" . "\n\n" .
-    "export { $file };" . "\n";
+    "export { $file };" . "\n" or die;
 close $F;
 print "$file.js has been created\n"
