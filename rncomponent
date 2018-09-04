@@ -4,21 +4,21 @@ my $file;
 
 if (@ARGV != 1) {
     # no enough argument
-    exit 1 if print "Usage: rncomponent [filename]\n"
+    die "Usage: rncomponent [filename]\n";
 } else {
     # get the file name
     $file = ucfirst $ARGV[0];
     if (lc $file eq "--about") {
-        exit 0 if print "\nrncomponent------\ncreates a template for your new components\nRead more: https://github.com/HenryQuan/rncomponent/\n\n";
+        die "\nrncomponent------\ncreates a template for your new components\nRead more: https://github.com/HenryQuan/rncomponent/\n\n";
     }
 } 
 
 if (-e "$file.js") {
     # check if file already exists
-    exit 1 if print "$file.js already exists\n";
+    die "$file.js already exists\n";
 } else {
     # write into the file
-    open my $F, ">", "$file.js" or die "I/O error";
+    open my $F, ">", "$file.js" or die "I/O error" or die;
     print $F "import React, { Component } from 'react';" . "\n" .
              "import { View, Text, StyleSheet } from 'react-native';" . "\n\n" .
              "class $file extends Component {" . "\n" .
