@@ -1,4 +1,6 @@
 *.exe
 *.js
+!Main.js
 *.tsx
+!Main.tsx
 *.out
