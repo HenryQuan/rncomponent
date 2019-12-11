@@ -1,12 +1,12 @@
 # rncomponent
-Create stateful or stateless rncomponents for flutter
+Create JavaScript or TypeScript component for React Native
 
 # Usage
 ```
 usage: rncomponent [option] [name]
--f      create a stateful rncomponent
--l      create a stateless rncomponent (it is 'L' not '1')
-name    anything but DO NOT include .dart
+--ts    create a TypeScript component
+--js    create a JavaScript component
+name    anything but **DO NOT** include `.js` or `.tsx`
 ```
 
 # Compile
@@ -15,4 +15,4 @@ make
 ```
 Then, drag `rncomponent` to your bin folder and use it anywhere
 
-Also try [rncomponent](https://github.com/HenryQuan/rncomponent) for React Native
+Also try [widget](https://github.com/HenryQuan/widget) for Flutter
