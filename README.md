@@ -1,5 +1,7 @@
 # rncomponent
-Create JavaScript or TypeScript component for React Native
+Create JavaScript or TypeScript component for React Native,
+
+See the master branch for the [Perl version](https://github.com/HenryQuan/rncomponent/tree/master).
 
 # Usage
 ```
