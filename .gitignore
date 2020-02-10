@@ -4,3 +4,4 @@
 *.tsx
 !Main.tsx
 *.out
+rncomponent*
